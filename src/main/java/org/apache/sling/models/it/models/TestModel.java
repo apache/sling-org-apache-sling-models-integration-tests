@@ -14,26 +14,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.sling.models.it;
+package org.apache.sling.models.it.models;
 
-import org.apache.sling.junit.remote.testrunner.SlingRemoteTestParameters;
-import org.apache.sling.junit.remote.testrunner.SlingRemoteTestRunner;
-import org.apache.sling.testing.tools.sling.SlingTestBase;
-import org.junit.runner.RunWith;
+import java.util.List;
 
-@RunWith(SlingRemoteTestRunner.class)
-public class RemoteTest extends SlingTestBase implements SlingRemoteTestParameters {
+import javax.inject.Inject;
+import javax.servlet.Filter;
 
-    public String getJunitServletUrl() {
-        return getServerBaseUrl() + "/system/sling/junit";
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.models.annotations.Model;
+
+@Model(adaptables=Resource.class)
+public class TestModel {
+
+    @Inject
+    private String testProperty;
+    
+    @Inject
+    private List<Filter> filters;
+    
+    public String getTestProperty() {
+        return testProperty;
     }
-
-    public String getTestClassesSelector() {
-        return "org.apache.sling.models";
+    
+    public List<Filter> getFilters() {
+        return filters;
     }
-
-    public String getTestMethodSelector() {
-        return null;
-    }
-
 }
