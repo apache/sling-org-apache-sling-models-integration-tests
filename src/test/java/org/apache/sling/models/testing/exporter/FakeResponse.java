@@ -28,6 +28,7 @@ class FakeResponse implements HttpServletResponse {
 
     private StringWriter stringWriter = new StringWriter();
     private String contentType = null;
+    private String characterEncoding = null;
 
     @Override
     public void addCookie(Cookie cookie) {
@@ -115,7 +116,7 @@ class FakeResponse implements HttpServletResponse {
 
     @Override
     public String getCharacterEncoding() {
-        return null;
+        return characterEncoding;
     }
 
     @Override
@@ -135,7 +136,7 @@ class FakeResponse implements HttpServletResponse {
 
     @Override
     public void setCharacterEncoding(String charset) {
-
+        this.characterEncoding = charset;
     }
 
     @Override

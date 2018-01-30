@@ -236,6 +236,7 @@ public class ExporterIT {
             slingRequestProcessor.processRequest(new FakeRequest(baseComponentPath + ".model.json"), response, resolver);
             JsonObject obj = Json.createReader(new StringReader((response.getStringWriter().toString()))).readObject();
             Assert.assertEquals("application/json", response.getContentType());
+            Assert.assertEquals("UTF-8", response.getCharacterEncoding());
             Assert.assertEquals("BASETESTVALUE", obj.getString("UPPER"));
             Assert.assertEquals(baseComponentPath, obj.getString("id"));
 
@@ -243,6 +244,7 @@ public class ExporterIT {
             slingRequestProcessor.processRequest(new FakeRequest(extendedComponentPath + ".model.json"), response, resolver);
             obj = Json.createReader(new StringReader((response.getStringWriter().toString()))).readObject();
             Assert.assertEquals("application/json", response.getContentType());
+            Assert.assertEquals("UTF-8", response.getCharacterEncoding());
             Assert.assertEquals(extendedComponentPath, obj.getString("id"));
             Assert.assertEquals(testDate.getTimeInMillis(), obj.getJsonNumber("date").longValue());
 
@@ -250,6 +252,7 @@ public class ExporterIT {
             slingRequestProcessor.processRequest(new FakeRequest(interfaceComponentPath + ".model.json"), response, resolver);
             obj = Json.createReader(new StringReader((response.getStringWriter().toString()))).readObject();
             Assert.assertEquals("application/json", response.getContentType());
+            Assert.assertEquals("UTF-8", response.getCharacterEncoding());
             Assert.assertEquals(interfaceComponentPath, obj.getString("id"));
             Assert.assertEquals("interfaceTESTValue", obj.getString("sampleValue"));
         } finally {
@@ -272,6 +275,7 @@ public class ExporterIT {
 
             JsonObject obj = Json.createReader(new StringReader(stringOutput)).readObject();
             Assert.assertEquals("application/json", response.getContentType());
+            Assert.assertEquals("UTF-8", response.getCharacterEncoding());
             Assert.assertEquals("BASETESTVALUE", obj.getString("UPPER"));
             Assert.assertTrue(obj.containsKey("testBindingsObject"));
             JsonObject testBindingsObject = obj.getJsonObject("testBindingsObject");
@@ -285,6 +289,7 @@ public class ExporterIT {
             slingRequestProcessor.processRequest(new FakeRequest(extendedRequestComponentPath + ".model.json"), response, resolver);
             obj = Json.createReader(new StringReader((response.getStringWriter().toString()))).readObject();
             Assert.assertEquals("application/json", response.getContentType());
+            Assert.assertEquals("UTF-8", response.getCharacterEncoding());
             Assert.assertEquals(extendedRequestComponentPath, obj.getString("id"));
             Assert.assertEquals(dateFormat.format(testDate), obj.getString("date"));
 
@@ -292,6 +297,7 @@ public class ExporterIT {
             slingRequestProcessor.processRequest(new FakeRequest(interfaceRequestComponentPath + ".model.json"), response, resolver);
             obj = Json.createReader(new StringReader((response.getStringWriter().toString()))).readObject();
             Assert.assertEquals("application/json", response.getContentType());
+            Assert.assertEquals("UTF-8", response.getCharacterEncoding());
             Assert.assertEquals(interfaceRequestComponentPath, obj.getString("id"));
             Assert.assertEquals("interfaceTESTValue", obj.getString("sampleValue"));
         } finally {
