@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.sling.models.testing.exporter;
+package org.apache.sling.models.testing.helper;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.Cookie;
@@ -24,11 +24,12 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Locale;
 
-class FakeResponse implements HttpServletResponse {
+public class FakeResponse implements HttpServletResponse {
 
     private StringWriter stringWriter = new StringWriter();
     private String contentType = null;
     private String characterEncoding = null;
+    private int status = -1;
 
     @Override
     public void addCookie(Cookie cookie) {
@@ -106,12 +107,12 @@ class FakeResponse implements HttpServletResponse {
 
     @Override
     public void setStatus(int sc) {
-
+        this.status = sc;
     }
 
     @Override
     public void setStatus(int sc, String sm) {
-
+        setStatus(sc);
     }
 
     @Override
@@ -191,5 +192,9 @@ class FakeResponse implements HttpServletResponse {
 
     public StringWriter getStringWriter() {
         return stringWriter;
+    }
+
+    public int getStatus() {
+        return status;
     }
 }

@@ -40,6 +40,8 @@ import org.apache.sling.engine.SlingRequestProcessor;
 import org.apache.sling.junit.rules.TeleporterRule;
 import org.apache.sling.models.factory.MissingExporterException;
 import org.apache.sling.models.factory.ModelFactory;
+import org.apache.sling.models.testing.helper.FakeRequest;
+import org.apache.sling.models.testing.helper.FakeResponse;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;

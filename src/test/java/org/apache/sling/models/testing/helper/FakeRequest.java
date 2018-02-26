@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.sling.models.testing.exporter;
+package org.apache.sling.models.testing.helper;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletInputStream;
@@ -31,7 +31,7 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-class FakeRequest implements HttpServletRequest {
+public class FakeRequest implements HttpServletRequest {
 
     private final String path;
 
@@ -39,7 +39,7 @@ class FakeRequest implements HttpServletRequest {
 
     private final Map<String, Object> attributes = new HashMap<String, Object>();
 
-    FakeRequest(String path) {
+    public FakeRequest(String path) {
         this.path = path;
         this.requestUrl = new StringBuffer("http://notarealhost").append(path);
     }
