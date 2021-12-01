@@ -19,6 +19,7 @@ package org.apache.sling.models.testing.helper;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.Collection;
 import java.util.Locale;
 
 import javax.servlet.ServletOutputStream;
@@ -197,5 +198,25 @@ public class FakeResponse implements HttpServletResponse {
 
     public int getStatus() {
         return status;
+    }
+
+    @Override
+    public void setContentLengthLong(long len) {
+
+    }
+
+    @Override
+    public String getHeader(String name) {
+        return null;
+    }
+
+    @Override
+    public Collection<String> getHeaders(String name) {
+        return null;
+    }
+
+    @Override
+    public Collection<String> getHeaderNames() {
+        return null;
     }
 }

@@ -29,8 +29,8 @@ import java.util.TimeZone;
 import javax.json.Json;
 import javax.json.JsonObject;
 
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.time.FastDateFormat;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.time.FastDateFormat;
 import org.apache.sling.api.SlingConstants;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -68,7 +68,7 @@ public class ExporterIT {
     private final String interfaceRequestComponentPath = "/content/exp-request/interfaceComponent";
     private Calendar testDate;
 
-    private Format dateFormat = FastDateFormat.getInstance("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+    private Format dateFormat = FastDateFormat.getInstance("yyyy-MM-dd'T'HH:mm:ss.SSSZ", TimeZone.getTimeZone("UTC"));
 
     @Before
     public void setup() throws Exception {
