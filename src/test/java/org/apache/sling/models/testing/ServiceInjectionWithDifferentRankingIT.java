@@ -29,7 +29,7 @@ import java.util.Hashtable;
 import javax.jcr.Node;
 import javax.jcr.Session;
 
-import org.apache.commons.lang.RandomStringUtils;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;

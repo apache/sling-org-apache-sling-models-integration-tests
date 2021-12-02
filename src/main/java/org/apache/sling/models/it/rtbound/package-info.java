@@ -14,22 +14,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.sling.models.it.services;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+@Version("1.0")
+package org.apache.sling.models.it.rtbound;
 
-import org.osgi.service.component.annotations.Component;
-
-@Component(service = Map.class, property = {
-    "javax.script.name=sling-models-exporter"
-})
-public class AnotherTestBindingsValuesProvider extends HashMap<String, Object> {
-    private static final long serialVersionUID = 1L;
-
-    public AnotherTestBindingsValuesProvider() {
-        super.put("testBindingsObject2", Collections.singletonMap("name2", "value2"));
-    }
-
-}
+import org.osgi.annotation.versioning.Version;

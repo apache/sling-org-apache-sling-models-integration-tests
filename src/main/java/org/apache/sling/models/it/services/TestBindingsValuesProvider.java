@@ -20,13 +20,11 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Property;
-import org.apache.felix.scr.annotations.Service;
+import org.osgi.service.component.annotations.Component;
 
-@Component
-@Service(value = Map.class)
-@Property(name = "javax.script.name", value = "*")
+@Component(service = Map.class, property = {
+    "javax.script.name=*"
+})
 public class TestBindingsValuesProvider extends HashMap<String, Object> {
 
     public TestBindingsValuesProvider() {

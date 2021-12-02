@@ -18,23 +18,20 @@
  */
 package org.apache.sling.models.it.implpicker;
 
-import org.apache.commons.lang.StringUtils;
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Property;
-import org.apache.felix.scr.annotations.Service;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.spi.ImplementationPicker;
-import org.osgi.framework.Constants;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.propertytypes.ServiceRanking;
 
 /**
  * This is a curious {@link ImplementationPicker} implementation for integration test
  * that picks the last implementation if the resource has the name "custom";
  */
-@Component
-@Service
-@Property(name = Constants.SERVICE_RANKING, intValue = 100)
+@Component(service = ImplementationPicker.class)
+@ServiceRanking(100)
 public class CustomLastImplementationPicker implements ImplementationPicker {
-    
+
     public static final String CUSTOM_NAME = "custom";
 
     public Class<?> pick(Class<?> adapterType, Class<?>[] implementationsTypes, Object adaptable) {
@@ -43,5 +40,5 @@ public class CustomLastImplementationPicker implements ImplementationPicker {
         }
         return null;
     }
-    
+
 }

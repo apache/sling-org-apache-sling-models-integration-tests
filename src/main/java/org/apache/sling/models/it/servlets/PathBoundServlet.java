@@ -18,15 +18,18 @@ package org.apache.sling.models.it.servlets;
 
 import java.io.IOException;
 
+import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 
-import org.apache.felix.scr.annotations.sling.SlingServlet;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
 import org.apache.sling.models.it.models.RequestSelfModel;
+import org.apache.sling.servlets.annotations.SlingServletPaths;
+import org.osgi.service.component.annotations.Component;
 
-@SlingServlet(paths = "/apps/rtpickerrequest")
+@Component(service = Servlet.class)
+@SlingServletPaths("/apps/rtpickerrequest")
 public class PathBoundServlet extends SlingSafeMethodsServlet {
 
     @Override
@@ -34,4 +37,5 @@ public class PathBoundServlet extends SlingSafeMethodsServlet {
         RequestSelfModel model = request.adaptTo(RequestSelfModel.class);
         response.setStatus(200);
     }
+
 }
