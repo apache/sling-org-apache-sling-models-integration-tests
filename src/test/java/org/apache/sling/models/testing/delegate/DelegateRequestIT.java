@@ -16,6 +16,13 @@
  */
 package org.apache.sling.models.testing.delegate;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.sling.api.SlingConstants;
 import org.apache.sling.api.resource.LoginException;
 import org.apache.sling.api.resource.PersistenceException;
@@ -32,11 +39,6 @@ import org.apache.sling.models.testing.rtbound.FakeRequest;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import static org.junit.Assert.*;
 
 public class DelegateRequestIT {
 

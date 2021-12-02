@@ -16,7 +16,12 @@
  */
 package org.apache.sling.models.it.exporter;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Map;
+
+import javax.inject.Inject;
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Exporter;
@@ -25,10 +30,7 @@ import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Via;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 
-import javax.inject.Inject;
-import javax.servlet.ServletRequest;
-import javax.servlet.http.HttpServletRequest;
-import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Model(adaptables = { SlingHttpServletRequest.class }, resourceType = "sling/exp-request/base")
 @Exporter(name = "jackson", extensions = "json", options = {

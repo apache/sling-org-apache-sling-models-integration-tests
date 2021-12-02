@@ -21,8 +21,6 @@ import org.apache.sling.testing.clients.util.TimeoutsProvider;
 import org.apache.sling.testing.serversetup.instance.SlingTestBase;
 import org.apache.sling.testing.teleporter.client.ClientSideTeleporter;
 
-import java.io.File;
-
 /** This is required by the TeleporterRule, to setup the client-side
  *  teleporter with (at least) the test server URL.
  */

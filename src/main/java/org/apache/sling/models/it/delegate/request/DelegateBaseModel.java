@@ -16,11 +16,11 @@
  */
 package org.apache.sling.models.it.delegate.request;
 
+import javax.inject.Inject;
+
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Via;
-
-import javax.inject.Inject;
 
 @Model(adaptables = SlingHttpServletRequest.class, adapters = DelegateInterface.class,
     resourceType = "sling/delegate/base")

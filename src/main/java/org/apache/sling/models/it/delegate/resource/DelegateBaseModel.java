@@ -16,10 +16,10 @@
  */
 package org.apache.sling.models.it.delegate.resource;
 
+import javax.inject.Inject;
+
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Model;
-
-import javax.inject.Inject;
 
 @Model(adaptables = Resource.class, adapters = DelegateInterface.class,
     resourceType = "sling/delegate/base")

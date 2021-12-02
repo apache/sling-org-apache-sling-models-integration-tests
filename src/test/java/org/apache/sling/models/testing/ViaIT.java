@@ -16,7 +16,8 @@
  */
 package org.apache.sling.models.testing;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import javax.jcr.Node;
 import javax.jcr.Session;

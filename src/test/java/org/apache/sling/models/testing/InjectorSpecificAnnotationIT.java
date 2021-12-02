@@ -30,7 +30,6 @@ import org.apache.sling.junit.rules.TeleporterRule;
 import org.apache.sling.models.it.models.SlingPropertyAnnotationTestModel;
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 public class InjectorSpecificAnnotationIT {
 

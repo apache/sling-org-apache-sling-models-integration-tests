@@ -16,14 +16,14 @@
  */
 package org.apache.sling.models.it.exporter;
 
+import javax.inject.Inject;
+
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Exporter;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Via;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
-
-import javax.inject.Inject;
 
 @Model(adaptables = { SlingHttpServletRequest.class }, adapters = Component.class, resourceType = "sling/exp-request/interface")
 @Exporter(name = "jackson", extensions = "json")

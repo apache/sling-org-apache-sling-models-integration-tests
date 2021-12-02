@@ -16,11 +16,11 @@
  */
 package org.apache.sling.models.it.exporter;
 
+import javax.inject.Inject;
+
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Exporter;
 import org.apache.sling.models.annotations.Model;
-
-import javax.inject.Inject;
 
 @Model(adaptables = { Resource.class }, adapters = Component.class, resourceType = "sling/exp/interface")
 @Exporter(name = "jackson", extensions = "json")

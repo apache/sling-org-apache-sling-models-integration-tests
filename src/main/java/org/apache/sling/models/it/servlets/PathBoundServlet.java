@@ -16,14 +16,15 @@
  */
 package org.apache.sling.models.it.servlets;
 
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+
 import org.apache.felix.scr.annotations.sling.SlingServlet;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
 import org.apache.sling.models.it.models.RequestSelfModel;
-
-import javax.servlet.ServletException;
-import java.io.IOException;
 
 @SlingServlet(paths = "/apps/rtpickerrequest")
 public class PathBoundServlet extends SlingSafeMethodsServlet {

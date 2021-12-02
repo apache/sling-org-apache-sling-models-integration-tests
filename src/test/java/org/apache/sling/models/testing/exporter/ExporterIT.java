@@ -16,9 +16,9 @@
  */
 package org.apache.sling.models.testing.exporter;
 
+import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.io.StringReader;
-import java.io.ByteArrayInputStream;
 import java.text.Format;
 import java.util.Calendar;
 import java.util.Collections;

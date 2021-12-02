@@ -16,6 +16,8 @@
  */
 package org.apache.sling.models.it.services;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.felix.scr.annotations.Component;
 import org.apache.felix.scr.annotations.Reference;
 import org.apache.felix.scr.annotations.Service;
@@ -24,8 +26,6 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceDecorator;
 import org.apache.sling.api.resource.ResourceWrapper;
 import org.apache.sling.api.resource.ValueMap;
-
-import javax.servlet.http.HttpServletRequest;
 
 @Component
 @Service

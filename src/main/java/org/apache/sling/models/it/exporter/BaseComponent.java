@@ -20,7 +20,6 @@ import javax.inject.Inject;
 
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Exporter;
-import org.apache.sling.models.annotations.ExporterOption;
 import org.apache.sling.models.annotations.Model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;

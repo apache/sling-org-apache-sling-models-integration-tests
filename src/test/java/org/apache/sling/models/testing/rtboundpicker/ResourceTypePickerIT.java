@@ -16,6 +16,9 @@
  */
 package org.apache.sling.models.testing.rtboundpicker;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.sling.api.SlingConstants;
 import org.apache.sling.api.resource.LoginException;
 import org.apache.sling.api.resource.PersistenceException;
@@ -31,9 +34,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class ResourceTypePickerIT {
 

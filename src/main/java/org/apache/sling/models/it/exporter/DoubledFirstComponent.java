@@ -16,13 +16,9 @@
  */
 package org.apache.sling.models.it.exporter;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Exporter;
 import org.apache.sling.models.annotations.Model;
-
-import javax.inject.Inject;
-import javax.inject.Named;
 
 @Model(adaptables = { Resource.class }, resourceType = "sling/exp/doubled")
 @Exporter(name = "jackson", extensions = "json", selector = "firstmodel")

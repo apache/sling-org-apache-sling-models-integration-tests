@@ -16,6 +16,12 @@
  */
 package org.apache.sling.models.testing;
 
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
+import javax.jcr.Node;
+import javax.jcr.Session;
+
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -28,11 +34,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-
-import javax.jcr.Node;
-import javax.jcr.Session;
-
-import static org.junit.Assert.*;
 
 public class DecoratedIT {
 

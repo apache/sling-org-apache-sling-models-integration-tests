@@ -16,7 +16,9 @@
  */
 package org.apache.sling.models.testing;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertSame;
 
 import javax.jcr.Node;
 import javax.jcr.Session;
@@ -27,8 +29,8 @@ import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.apache.sling.junit.rules.TeleporterRule;
 import org.apache.sling.models.it.models.ConstructorInjectionTestModel;
-import org.apache.sling.models.it.models.InterfaceInjectionTestModel;
 import org.apache.sling.models.it.models.FieldInjectionTestModel;
+import org.apache.sling.models.it.models.InterfaceInjectionTestModel;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;

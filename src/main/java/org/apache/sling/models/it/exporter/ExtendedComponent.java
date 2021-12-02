@@ -20,11 +20,11 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+import javax.inject.Inject;
+
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Exporter;
 import org.apache.sling.models.annotations.Model;
-
-import javax.inject.Inject;
 
 @Model(adaptables = { Resource.class }, resourceType = "sling/exp/extended")
 @Exporter(name = "jackson", extensions = "json")
