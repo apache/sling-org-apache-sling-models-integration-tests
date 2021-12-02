@@ -52,6 +52,7 @@ public class ResourceTypeBindingIT {
     private final String fromRequestComponentPath = "/content/rt/fromRequest";
 
     @Before
+    @SuppressWarnings({ "null", "deprecation" })
     public void setup() throws LoginException, PersistenceException {
         rrFactory = teleporter.getService(ResourceResolverFactory.class);
         modelFactory = teleporter.getService(ModelFactory.class);
@@ -104,6 +105,7 @@ public class ResourceTypeBindingIT {
     }
 
     @Test
+    @SuppressWarnings("deprecation")
     public void testClientModelCreateFromResource() throws LoginException {
         ResourceResolver resolver = null;
         try {
@@ -140,6 +142,7 @@ public class ResourceTypeBindingIT {
     }
 
     @Test
+    @SuppressWarnings("deprecation")
     public void testClientModelCreateFromRequest() throws LoginException {
         ResourceResolver resolver = null;
         try {

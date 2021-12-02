@@ -26,14 +26,17 @@ import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
 import org.apache.sling.models.it.models.RequestSelfModel;
 import org.apache.sling.servlets.annotations.SlingServletPaths;
+import org.jetbrains.annotations.NotNull;
 import org.osgi.service.component.annotations.Component;
 
 @Component(service = Servlet.class)
 @SlingServletPaths("/apps/rtpickerrequest")
 public class PathBoundServlet extends SlingSafeMethodsServlet {
+    private static final long serialVersionUID = 1L;
 
     @Override
-    protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) throws ServletException, IOException {
+    @SuppressWarnings("unused")
+    protected void doGet(@NotNull SlingHttpServletRequest request, @NotNull SlingHttpServletResponse response) throws ServletException, IOException {
         RequestSelfModel model = request.adaptTo(RequestSelfModel.class);
         response.setStatus(200);
     }

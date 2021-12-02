@@ -46,6 +46,7 @@ public class ResourceTypePickerIT {
     private final String childComponentPath = "/content/rtpicker/childComponent";
 
     @Before
+    @SuppressWarnings({ "null", "deprecation" })
     public void setup() throws LoginException, PersistenceException {
         rrFactory = teleporter.getService(ResourceResolverFactory.class);
         ResourceResolver adminResolver = null;
@@ -73,6 +74,7 @@ public class ResourceTypePickerIT {
     }
 
     @Test
+    @SuppressWarnings("deprecation")
     public void testClientModelCreateFromResource() throws LoginException {
         ResourceResolver resolver = null;
         try {

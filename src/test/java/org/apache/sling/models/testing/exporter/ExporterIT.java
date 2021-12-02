@@ -71,6 +71,7 @@ public class ExporterIT {
     private Format dateFormat = FastDateFormat.getInstance("yyyy-MM-dd'T'HH:mm:ss.SSSZ", TimeZone.getTimeZone("UTC"));
 
     @Before
+    @SuppressWarnings({"null", "deprecation"})
     public void setup() throws Exception {
         rrFactory = teleporter.getService(ResourceResolverFactory.class);
         modelFactory = teleporter.getService(ModelFactory.class);
@@ -149,6 +150,7 @@ public class ExporterIT {
     }
 
     @Test
+    @SuppressWarnings({"null", "deprecation"})
     public void testExportToJSON() throws Exception {
         ResourceResolver resolver = null;
         try {
@@ -190,6 +192,7 @@ public class ExporterIT {
         }
     }
 
+    @SuppressWarnings("deprecation")
     @Test
     public void testExportToTidyJSON() throws Exception {
         ResourceResolver resolver = null;
@@ -211,6 +214,7 @@ public class ExporterIT {
         }
     }
 
+    @SuppressWarnings({ "deprecation", "unchecked" })
     @Test
     public void testExportToMap() throws Exception {
         ResourceResolver resolver = null;
@@ -230,6 +234,7 @@ public class ExporterIT {
     }
 
     @Test
+    @SuppressWarnings("deprecation")
     public void testResourceServlets() throws Exception {
         ResourceResolver resolver = null;
         try {
@@ -265,6 +270,7 @@ public class ExporterIT {
     }
 
     @Test
+    @SuppressWarnings("deprecation")
     public void testRequestServlets() throws Exception {
         ResourceResolver resolver = null;
         try {
@@ -310,6 +316,7 @@ public class ExporterIT {
     }
 
     @Test
+    @SuppressWarnings("deprecation")
     public void testDoubledServlets() throws Exception {
         ResourceResolver resolver = null;
         try {
@@ -334,6 +341,7 @@ public class ExporterIT {
     }
 
     @Test
+    @SuppressWarnings("deprecation")
     public void testFailedExport() throws Exception {
         boolean thrown = false;
         try {
@@ -342,7 +350,7 @@ public class ExporterIT {
                 resolver = rrFactory.getAdministrativeResourceResolver(null);
                 final Resource baseComponentResource = resolver.getResource(baseComponentPath);
                 Assert.assertNotNull(baseComponentResource);
-                String data = modelFactory.exportModelForResource(baseComponentResource, "jaxb", String.class,
+                modelFactory.exportModelForResource(baseComponentResource, "jaxb", String.class,
                         Collections.<String, String>emptyMap());
                 Assert.fail("Should have thrown missing serializer error.");
             } finally {

@@ -36,12 +36,14 @@ public class PathBoundServletIT {
     private SlingRequestProcessor slingRequestProcessor;
 
     @Before
+    @SuppressWarnings("null")
     public void setup() {
         rrFactory = teleporter.getService(ResourceResolverFactory.class);
         slingRequestProcessor = teleporter.getService(SlingRequestProcessor.class);
     }
 
     @Test
+    @SuppressWarnings("deprecation")
     public void testDoubledServlets() throws Exception {
         ResourceResolver resolver = null;
         try {
@@ -56,4 +58,5 @@ public class PathBoundServletIT {
             }
         }
     }
+
 }

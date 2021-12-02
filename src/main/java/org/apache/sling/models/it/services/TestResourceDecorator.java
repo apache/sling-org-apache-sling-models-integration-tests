@@ -23,6 +23,7 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceDecorator;
 import org.apache.sling.api.resource.ResourceWrapper;
 import org.apache.sling.api.resource.ValueMap;
+import org.jetbrains.annotations.NotNull;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
@@ -33,7 +34,8 @@ public class TestResourceDecorator implements ResourceDecorator {
     private AdapterManager adapterManager;
 
     @Override
-    public Resource decorate(Resource resource) {
+    @SuppressWarnings("null")
+    public Resource decorate(@NotNull Resource resource) {
         ValueMap map = resource.adaptTo(ValueMap.class);
         if (map != null && map.containsKey("decorate")) {
             if (map.get("decorate", "default").equals("customAdaptTo")) {
@@ -56,7 +58,7 @@ public class TestResourceDecorator implements ResourceDecorator {
     }
 
     @Override
-    public Resource decorate(Resource resource, HttpServletRequest request) {
+    public Resource decorate(@NotNull Resource resource, @NotNull HttpServletRequest request) {
         return decorate(resource);
     }
 }

@@ -49,6 +49,7 @@ import org.apache.sling.api.request.RequestPathInfo;
 import org.apache.sling.api.request.RequestProgressTracker;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
+import org.jetbrains.annotations.NotNull;
 
 public class FakeRequest implements SlingHttpServletRequest {
 
@@ -59,47 +60,50 @@ public class FakeRequest implements SlingHttpServletRequest {
     }
 
     @Override
-    public Resource getResource() {
+    public @NotNull Resource getResource() {
         return resource;
     }
 
     @Override
-    public ResourceResolver getResourceResolver() {
+    @SuppressWarnings("null")
+    public @NotNull ResourceResolver getResourceResolver() {
         return null;
     }
 
     @Override
-    public RequestPathInfo getRequestPathInfo() {
+    @SuppressWarnings("null")
+    public @NotNull RequestPathInfo getRequestPathInfo() {
         return null;
     }
 
     @Override
-    public RequestParameter getRequestParameter(String s) {
+    public RequestParameter getRequestParameter(@NotNull String s) {
         return null;
     }
 
     @Override
-    public RequestParameter[] getRequestParameters(String s) {
+    public RequestParameter[] getRequestParameters(@NotNull String s) {
         return new RequestParameter[0];
     }
 
     @Override
-    public RequestParameterMap getRequestParameterMap() {
+    @SuppressWarnings("null")
+    public @NotNull RequestParameterMap getRequestParameterMap() {
         return null;
     }
 
     @Override
-    public RequestDispatcher getRequestDispatcher(String s, RequestDispatcherOptions requestDispatcherOptions) {
+    public RequestDispatcher getRequestDispatcher(@NotNull String s, RequestDispatcherOptions requestDispatcherOptions) {
         return null;
     }
 
     @Override
-    public RequestDispatcher getRequestDispatcher(Resource resource, RequestDispatcherOptions requestDispatcherOptions) {
+    public RequestDispatcher getRequestDispatcher(@NotNull Resource resource, RequestDispatcherOptions requestDispatcherOptions) {
         return null;
     }
 
     @Override
-    public RequestDispatcher getRequestDispatcher(Resource resource) {
+    public RequestDispatcher getRequestDispatcher(@NotNull Resource resource) {
         return null;
     }
 
@@ -114,7 +118,8 @@ public class FakeRequest implements SlingHttpServletRequest {
     }
 
     @Override
-    public Enumeration<String> getResponseContentTypes() {
+    @SuppressWarnings("null")
+    public @NotNull Enumeration<String> getResponseContentTypes() {
         return null;
     }
 
@@ -129,6 +134,7 @@ public class FakeRequest implements SlingHttpServletRequest {
     }
 
     @Override
+    @SuppressWarnings("null")
     public RequestProgressTracker getRequestProgressTracker() {
         return null;
     }
@@ -154,12 +160,12 @@ public class FakeRequest implements SlingHttpServletRequest {
     }
 
     @Override
-    public Enumeration getHeaders(String s) {
+    public Enumeration<String> getHeaders(String s) {
         return null;
     }
 
     @Override
-    public Enumeration getHeaderNames() {
+    public Enumeration<String> getHeaderNames() {
         return null;
     }
 
@@ -264,7 +270,7 @@ public class FakeRequest implements SlingHttpServletRequest {
     }
 
     @Override
-    public Enumeration getAttributeNames() {
+    public Enumeration<String> getAttributeNames() {
         return null;
     }
 
@@ -299,7 +305,7 @@ public class FakeRequest implements SlingHttpServletRequest {
     }
 
     @Override
-    public Enumeration getParameterNames() {
+    public Enumeration<String> getParameterNames() {
         return null;
     }
 
@@ -309,7 +315,7 @@ public class FakeRequest implements SlingHttpServletRequest {
     }
 
     @Override
-    public Map getParameterMap() {
+    public Map<String,String[]> getParameterMap() {
         return null;
     }
 
@@ -364,7 +370,7 @@ public class FakeRequest implements SlingHttpServletRequest {
     }
 
     @Override
-    public Enumeration getLocales() {
+    public Enumeration<Locale> getLocales() {
         return null;
     }
 
@@ -404,7 +410,8 @@ public class FakeRequest implements SlingHttpServletRequest {
     }
 
     @Override
-    public <AdapterType> AdapterType adaptTo(Class<AdapterType> aClass) {
+    @SuppressWarnings("null")
+    public <AdapterType> AdapterType adaptTo(@NotNull Class<AdapterType> aClass) {
         return null;
     }
 
@@ -439,6 +446,7 @@ public class FakeRequest implements SlingHttpServletRequest {
     }
 
     @Override
+    @SuppressWarnings("null")
     public <T extends HttpUpgradeHandler> T upgrade(Class<T> handlerClass) throws IOException, ServletException {
         return null;
     }
@@ -485,6 +493,7 @@ public class FakeRequest implements SlingHttpServletRequest {
     }
 
     @Override
+    @SuppressWarnings("null")
     public List<RequestParameter> getRequestParameterList() {
         return null;
     }

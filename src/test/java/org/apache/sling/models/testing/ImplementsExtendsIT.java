@@ -54,15 +54,16 @@ public class ImplementsExtendsIT {
     private ResourceResolver resolver;
     private Resource resource;
     private Node createdNode;
-    
+
     @Before
+    @SuppressWarnings({ "null", "deprecation" })
     public void setUp() throws Exception {
         ResourceResolverFactory rrFactory = teleporter.getService(ResourceResolverFactory.class);
         adapterManager = teleporter.getService(AdapterManager.class);
         firstValue = RandomStringUtils.randomAlphanumeric(10);
         thirdValue = RandomStringUtils.randomAlphanumeric(10);
 
-        resolver = rrFactory.getAdministrativeResourceResolver(null);     
+        resolver = rrFactory.getAdministrativeResourceResolver(null);
         Session session = resolver.adaptTo(Session.class);
         Node rootNode = session.getRootNode();
         createdNode = rootNode.addNode("test_" + RandomStringUtils.randomAlphanumeric(10));
@@ -80,7 +81,7 @@ public class ImplementsExtendsIT {
             resolver.close();
         }
     }
-    
+
     /**
      * Try to adapt to interface, with an different implementation class that has the @Model annotation
      */
@@ -119,28 +120,29 @@ public class ImplementsExtendsIT {
         assertNotNull(model);
         assertEquals("!" + firstValue + "|" + secondValue + "|" + thirdValue + "!", model.getAllProperties());
     }
-    
+
 
     /**
      * Try to adapt to interface, with an different implementation class that has the @Model annotation
      */
     @Test
+    @SuppressWarnings("null")
     public void testImplementsInterfaceModelWithPickLastImplementationPicker() throws RepositoryException {
-        
+
         Session session = resolver.adaptTo(Session.class);
         Node node = resource.adaptTo(Node.class);
         Node childNode = node.addNode(CustomLastImplementationPicker.CUSTOM_NAME);
         childNode.setProperty("first", firstValue);
         childNode.setProperty("third", thirdValue);
         session.save();
-        
+
         Resource childResource = resolver.getResource(childNode.getPath());
-        
+
         SampleServiceInterface model = adapterManager.getAdapter(childResource, SampleServiceInterface.class);
         assertNotNull(model);
         assertEquals(ImplementsInterfacePropertyModel2.class, model.getClass());
         assertEquals(firstValue + "|" + secondValue + "|" + thirdValue, model.getAllProperties());
-        
+
         childNode.remove();
         session.save();
     }

@@ -39,6 +39,7 @@ public class ViaIT {
     public final TeleporterRule teleporter = TeleporterRule.forClass(getClass(), "SM_Teleporter");
 
     @Test
+    @SuppressWarnings({ "null", "deprecation" })
     public void test() throws Exception {
         ResourceResolverFactory rrFactory = teleporter.getService(ResourceResolverFactory.class);
         AdapterManager adapterManager =  teleporter.getService(AdapterManager.class);

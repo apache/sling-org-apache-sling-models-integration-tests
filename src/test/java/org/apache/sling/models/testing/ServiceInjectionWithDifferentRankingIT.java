@@ -62,6 +62,7 @@ public class ServiceInjectionWithDifferentRankingIT {
     private Collection<ServiceRegistration> serviceRegistrations;
 
     @Before
+    @SuppressWarnings({ "null", "deprecation" })
     public void setUp() throws Exception {
         ResourceResolverFactory rrFactory = teleporter.getService(ResourceResolverFactory.class);
         modelFactory = teleporter.getService(ModelFactory.class);

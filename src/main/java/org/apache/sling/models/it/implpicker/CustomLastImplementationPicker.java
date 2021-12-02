@@ -21,6 +21,7 @@ package org.apache.sling.models.it.implpicker;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.spi.ImplementationPicker;
+import org.jetbrains.annotations.NotNull;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.propertytypes.ServiceRanking;
 
@@ -34,7 +35,7 @@ public class CustomLastImplementationPicker implements ImplementationPicker {
 
     public static final String CUSTOM_NAME = "custom";
 
-    public Class<?> pick(Class<?> adapterType, Class<?>[] implementationsTypes, Object adaptable) {
+    public Class<?> pick(@NotNull Class<?> adapterType, Class<?>[] implementationsTypes, @NotNull Object adaptable) {
         if (adaptable instanceof Resource && StringUtils.equals(((Resource)adaptable).getName(), CUSTOM_NAME)) {
             return implementationsTypes[implementationsTypes.length - 1];
         }

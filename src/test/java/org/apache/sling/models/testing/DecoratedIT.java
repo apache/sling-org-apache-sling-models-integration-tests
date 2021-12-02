@@ -45,8 +45,9 @@ public class DecoratedIT {
     private ResourceResolver resolver;
     private Resource resourceWithDefaultWrapperBehavior;
     private Resource resourceWithCustomAdaptToWrapper;
-    
+
     @Before
+    @SuppressWarnings({ "null", "deprecation" })
     public void setUp() throws Exception {
         ResourceResolverFactory rrFactory = teleporter.getService(ResourceResolverFactory.class);
         modelFactory = teleporter.getService(ModelFactory.class);
@@ -86,7 +87,7 @@ public class DecoratedIT {
     public void testInjectDecoratedResourceUsingAdaptTo() {
         assertTrue("Resource is not wrapped", resourceWithCustomAdaptToWrapper instanceof ResourceWrapper);
         SelfModel model = resourceWithCustomAdaptToWrapper.adaptTo(SelfModel.class);
-    
+
         assertNotNull("Model is null", model);
         assertTrue("Model is not wrapped", model.getResource() instanceof ResourceWrapper);
     }

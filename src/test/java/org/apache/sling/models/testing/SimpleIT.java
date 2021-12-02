@@ -40,14 +40,15 @@ public class SimpleIT {
 
     @Rule
     public final TeleporterRule teleporter = TeleporterRule.forClass(getClass(), "SM_Teleporter");
-    
+
     private String value;
     private String childValue;
     private ResourceResolver resolver;
     private Resource resource;
     private Node createdNode;
-    
+
     @Before
+    @SuppressWarnings({ "null", "deprecation" })
     public void setUp() throws Exception {
         ResourceResolverFactory rrFactory = teleporter.getService(ResourceResolverFactory.class);
         value = RandomStringUtils.randomAlphanumeric(10);
@@ -78,7 +79,7 @@ public class SimpleIT {
     @Test
     public void testFieldInjection() {
         FieldInjectionTestModel model = resource.adaptTo(FieldInjectionTestModel.class);
-    
+
         assertNotNull("Model is null", model);
         assertEquals("Test Property is not set correctly", value, model.getTestProperty());
         assertEquals("Child Test Property is not set correctly", childValue, model.getChildProperty());
@@ -89,7 +90,7 @@ public class SimpleIT {
     @Test
     public void testInterfaceInjection() {
         InterfaceInjectionTestModel model = resource.adaptTo(InterfaceInjectionTestModel.class);
-    
+
         assertNotNull("Model is null", model);
         assertEquals("Test Property is not set correctly", value, model.getTestProperty());
         assertNotNull("Filters is null", model.getFilters());
@@ -99,7 +100,7 @@ public class SimpleIT {
     @Test
     public void testConstructorInjection() {
         ConstructorInjectionTestModel model = resource.adaptTo(ConstructorInjectionTestModel.class);
-    
+
         assertNotNull("Model is null", model);
         assertEquals("Test Property is not set correctly", value, model.getTestProperty());
         assertNotNull("Filters is null", model.getFilters());

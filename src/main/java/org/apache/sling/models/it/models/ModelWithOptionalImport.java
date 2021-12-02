@@ -26,5 +26,7 @@ public class ModelWithOptionalImport {
 
     // this class is not available at runtime. The containing package has an optional import so the bundle
     // still resolves
+    @SuppressWarnings("unused")
     private BeanUtils beanUtils = new BeanUtils();
+
 }

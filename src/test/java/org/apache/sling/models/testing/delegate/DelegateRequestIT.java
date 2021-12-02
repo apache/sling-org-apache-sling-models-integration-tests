@@ -53,6 +53,7 @@ public class DelegateRequestIT {
     private final String extendedComponentPath = "/content/delegate/extendedComponent";
 
     @Before
+    @SuppressWarnings({ "null", "deprecation" })
     public void setup() throws LoginException, PersistenceException {
         rrFactory = teleporter.getService(ResourceResolverFactory.class);
         modelFactory = teleporter.getService(ModelFactory.class);
@@ -88,6 +89,7 @@ public class DelegateRequestIT {
     }
 
     @Test
+    @SuppressWarnings("deprecation")
     public void testCreateDelegateModel() throws LoginException {
         ResourceResolver resolver = null;
         try {

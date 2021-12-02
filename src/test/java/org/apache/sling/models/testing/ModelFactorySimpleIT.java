@@ -53,6 +53,7 @@ public class ModelFactorySimpleIT {
     private Node createdNode;
 
     @Before
+    @SuppressWarnings({ "null", "deprecation" })
     public void setUp() throws Exception {
         ResourceResolverFactory rrFactory = teleporter.getService(ResourceResolverFactory.class);
         modelFactory = teleporter.getService(ModelFactory.class);
@@ -105,7 +106,7 @@ public class ModelFactorySimpleIT {
         assertTrue("Model is not detected as such", modelFactory.canCreateFromAdaptable(resource, SampleServiceInterface.class));
         assertFalse("Model is incorrectly detected", modelFactory.canCreateFromAdaptable(new String(), ConstructorInjectionTestModel.class)); // invalid adaptable
     }
-    
+
     @Test()
     public void testCanCreateFromAdaptableWithModelExceptin() {
         assertFalse("Model is incorrectly detected", modelFactory.canCreateFromAdaptable(resource, DummyClass.class)); // no model class

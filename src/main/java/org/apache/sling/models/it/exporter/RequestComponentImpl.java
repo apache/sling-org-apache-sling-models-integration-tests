@@ -35,6 +35,7 @@ public class RequestComponentImpl implements Component {
     @Inject @Via("resource")
     private String sampleValue;
 
+    @SuppressWarnings("unused")
     private final SlingHttpServletRequest request;
 
     public RequestComponentImpl(SlingHttpServletRequest request) {
@@ -48,4 +49,5 @@ public class RequestComponentImpl implements Component {
     public String getSampleValue() {
         return sampleValue;
     }
+
 }

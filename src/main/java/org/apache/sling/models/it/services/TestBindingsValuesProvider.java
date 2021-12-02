@@ -26,8 +26,10 @@ import org.osgi.service.component.annotations.Component;
     "javax.script.name=*"
 })
 public class TestBindingsValuesProvider extends HashMap<String, Object> {
+    private static final long serialVersionUID = -5029445376678233701L;
 
     public TestBindingsValuesProvider() {
         super.put("testBindingsObject", Collections.singletonMap("name", "value"));
     }
+
 }

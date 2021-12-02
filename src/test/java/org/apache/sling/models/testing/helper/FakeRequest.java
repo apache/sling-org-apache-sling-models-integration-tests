@@ -76,12 +76,12 @@ public class FakeRequest implements HttpServletRequest {
     }
 
     @Override
-    public Enumeration getHeaders(String name) {
+    public Enumeration<String> getHeaders(String name) {
         return null;
     }
 
     @Override
-    public Enumeration getHeaderNames() {
+    public Enumeration<String> getHeaderNames() {
         return null;
     }
 
@@ -186,7 +186,7 @@ public class FakeRequest implements HttpServletRequest {
     }
 
     @Override
-    public Enumeration getAttributeNames() {
+    public Enumeration<String> getAttributeNames() {
         return null;
     }
 
@@ -221,7 +221,7 @@ public class FakeRequest implements HttpServletRequest {
     }
 
     @Override
-    public Enumeration getParameterNames() {
+    public Enumeration<String> getParameterNames() {
         return null;
     }
 
@@ -231,8 +231,8 @@ public class FakeRequest implements HttpServletRequest {
     }
 
     @Override
-    public Map getParameterMap() {
-        return Collections.EMPTY_MAP;
+    public Map<String, String[]> getParameterMap() {
+        return Collections.emptyMap();
     }
 
     @Override
@@ -286,7 +286,7 @@ public class FakeRequest implements HttpServletRequest {
     }
 
     @Override
-    public Enumeration getLocales() {
+    public Enumeration<Locale> getLocales() {
         return Collections.emptyEnumeration();
     }
 
@@ -397,6 +397,7 @@ public class FakeRequest implements HttpServletRequest {
     }
 
     @Override
+    @SuppressWarnings("null")
     public <T extends HttpUpgradeHandler> T upgrade(Class<T> handlerClass) throws IOException, ServletException {
         return null;
     }
