@@ -37,7 +37,7 @@ public class InjectorSpecificAnnotationIT {
     public final TeleporterRule teleporter = TeleporterRule.forClass(getClass(), "SM_Teleporter");
 
     @Test
-    @SuppressWarnings({ "null", "deprecation" })
+    @SuppressWarnings("null")
     public void test() throws Exception {
         ResourceResolverFactory rrFactory = teleporter.getService(ResourceResolverFactory.class);
         String value = RandomStringUtils.randomAlphanumeric(10);
@@ -45,7 +45,7 @@ public class InjectorSpecificAnnotationIT {
         ResourceResolver resolver = null;
         Node createdNode = null;
         try {
-            resolver = rrFactory.getAdministrativeResourceResolver(null);
+            resolver = rrFactory.getServiceResourceResolver(null);
             Session session = resolver.adaptTo(Session.class);
             Node rootNode = session.getRootNode();
             createdNode = rootNode.addNode("test_" + RandomStringUtils.randomAlphanumeric(10));

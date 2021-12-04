@@ -32,6 +32,12 @@
     org.apache.sling/org.apache.sling.models.integration-tests
 
 [configurations]
-    # Allow login administrative for org.apache.sling.junit.core
-    org.apache.sling.jcr.base.internal.LoginAdminWhitelist
-        whitelist.bundles.regexp="org\.apache\.sling\.junit\.core"
+    # configure service user mapping for junit core (being used in the IT itself)
+    org.apache.sling.serviceusermapping.impl.ServiceUserMapperImpl.amended-junit
+        user.mapping=["org.apache.sling.junit.core\=models-it"]
+
+[:repoinit]
+    create service user models-it
+    set ACL for models-it
+        allow   jcr:all    on /
+    end

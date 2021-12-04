@@ -46,12 +46,10 @@ public class ResourceTypePickerIT {
     private final String childComponentPath = "/content/rtpicker/childComponent";
 
     @Before
-    @SuppressWarnings({ "null", "deprecation" })
+    @SuppressWarnings("null")
     public void setup() throws LoginException, PersistenceException {
         rrFactory = teleporter.getService(ResourceResolverFactory.class);
-        ResourceResolver adminResolver = null;
-        try {
-            adminResolver = rrFactory.getAdministrativeResourceResolver(null);
+        try (ResourceResolver adminResolver = rrFactory.getServiceResourceResolver(null);) {
             Map<String, Object> properties = new HashMap<String, Object>();
             properties.put(SlingConstants.NAMESPACE_PREFIX + ":" + SlingConstants.PROPERTY_RESOURCE_TYPE,
                     "sling/rtpicker/base");
@@ -66,19 +64,12 @@ public class ResourceTypePickerIT {
             properties.clear();
 
             adminResolver.commit();
-        } finally {
-            if (adminResolver != null && adminResolver.isLive()) {
-                adminResolver.close();
-            }
         }
     }
 
     @Test
-    @SuppressWarnings("deprecation")
     public void testClientModelCreateFromResource() throws LoginException {
-        ResourceResolver resolver = null;
-        try {
-            resolver = rrFactory.getAdministrativeResourceResolver(null);
+        try (ResourceResolver resolver = rrFactory.getServiceResourceResolver(null);) {
             final Resource baseComponentResource = resolver.getResource(baseComponentPath);
             Assert.assertNotNull(baseComponentResource);
             TestComponent baseModel = baseComponentResource.adaptTo(TestComponent.class);
@@ -90,10 +81,6 @@ public class ResourceTypePickerIT {
             baseModel = childComponentResource.adaptTo(TestComponent.class);
             Assert.assertNotNull("Model should not be null", baseModel);
             Assert.assertTrue("Model should be a SubRTComponent", baseModel instanceof SubRTComponent);
-        } finally {
-            if (resolver != null && resolver.isLive()) {
-                resolver.close();
-            }
         }
     }
 }

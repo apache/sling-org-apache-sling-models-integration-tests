@@ -71,15 +71,13 @@ public class ExporterIT {
     private Format dateFormat = FastDateFormat.getInstance("yyyy-MM-dd'T'HH:mm:ss.SSSZ", TimeZone.getTimeZone("UTC"));
 
     @Before
-    @SuppressWarnings({"null", "deprecation"})
+    @SuppressWarnings("null")
     public void setup() throws Exception {
         rrFactory = teleporter.getService(ResourceResolverFactory.class);
         modelFactory = teleporter.getService(ModelFactory.class);
         slingRequestProcessor = teleporter.getService(SlingRequestProcessor.class);
 
-        ResourceResolver adminResolver = null;
-        try {
-            adminResolver = rrFactory.getAdministrativeResourceResolver(null);
+        try (ResourceResolver adminResolver = rrFactory.getServiceResourceResolver(null);) {
             Map<String, Object> properties = new HashMap<String, Object>();
             properties.put("sampleValue", "baseTESTValue");
             properties.put("sampleBooleanValue", true);
@@ -142,19 +140,13 @@ public class ExporterIT {
 
 
             adminResolver.commit();
-        } finally {
-            if (adminResolver != null && adminResolver.isLive()) {
-                adminResolver.close();
-            }
         }
     }
 
     @Test
-    @SuppressWarnings({"null", "deprecation"})
+    @SuppressWarnings("null")
     public void testExportToJSON() throws Exception {
-        ResourceResolver resolver = null;
-        try {
-            resolver = rrFactory.getAdministrativeResourceResolver(null);
+        try (ResourceResolver resolver = rrFactory.getServiceResourceResolver(null);) {
             final Resource baseComponentResource = resolver.getResource(baseComponentPath);
             Assert.assertNotNull(baseComponentResource);
             String jsonData = modelFactory.exportModelForResource(baseComponentResource, "jackson", String.class,
@@ -185,19 +177,12 @@ public class ExporterIT {
                     Collections.<String, String> emptyMap());
             Assert.assertTrue("JSON Data should contain the property value",
                     StringUtils.contains(jsonData, "interfaceTESTValue"));
-        } finally {
-            if (resolver != null && resolver.isLive()) {
-                resolver.close();
-            }
         }
     }
 
-    @SuppressWarnings("deprecation")
     @Test
     public void testExportToTidyJSON() throws Exception {
-        ResourceResolver resolver = null;
-        try {
-            resolver = rrFactory.getAdministrativeResourceResolver(null);
+        try (ResourceResolver resolver = rrFactory.getServiceResourceResolver(null);) {
             final Resource baseComponentResource = resolver.getResource(baseComponentPath);
             Assert.assertNotNull(baseComponentResource);
             String jsonData = modelFactory.exportModelForResource(baseComponentResource, "jackson", String.class,
@@ -207,38 +192,25 @@ public class ExporterIT {
             jsonData = modelFactory.exportModelForResource(baseComponentResource, "jackson", String.class,
                     Collections.<String, String>singletonMap("tidy", "true"));
             Assert.assertTrue(jsonData.contains(System.lineSeparator()));
-        } finally {
-            if (resolver != null && resolver.isLive()) {
-                resolver.close();
-            }
         }
     }
 
-    @SuppressWarnings({ "deprecation", "unchecked" })
+    @SuppressWarnings("unchecked")
     @Test
     public void testExportToMap() throws Exception {
-        ResourceResolver resolver = null;
-        try {
-            resolver = rrFactory.getAdministrativeResourceResolver(null);
+        try (ResourceResolver resolver = rrFactory.getServiceResourceResolver(null);) {
             final Resource baseComponentResource = resolver.getResource(baseComponentPath);
             Assert.assertNotNull(baseComponentResource);
             Map<String, Object> data = modelFactory.exportModelForResource(baseComponentResource, "jackson", Map.class,
                     Collections.<String, String> emptyMap());
             Assert.assertEquals("Should have resource value", "baseTESTValue", data.get("sampleValue"));
             Assert.assertEquals("Should have resource value", "BASETESTVALUE", data.get("UPPER"));
-        } finally {
-            if (resolver != null && resolver.isLive()) {
-                resolver.close();
-            }
         }
     }
 
     @Test
-    @SuppressWarnings("deprecation")
     public void testResourceServlets() throws Exception {
-        ResourceResolver resolver = null;
-        try {
-            resolver = rrFactory.getAdministrativeResourceResolver(null);
+        try (ResourceResolver resolver = rrFactory.getServiceResourceResolver(null);) {
             FakeResponse response = new FakeResponse();
             slingRequestProcessor.processRequest(new FakeRequest(baseComponentPath + ".model.json"), response, resolver);
             JsonObject obj = Json.createReader(new StringReader((response.getStringWriter().toString()))).readObject();
@@ -262,19 +234,12 @@ public class ExporterIT {
             Assert.assertEquals("UTF-8", response.getCharacterEncoding());
             Assert.assertEquals(interfaceComponentPath, obj.getString("id"));
             Assert.assertEquals("interfaceTESTValue", obj.getString("sampleValue"));
-        } finally {
-            if (resolver != null && resolver.isLive()) {
-                resolver.close();
-            }
         }
     }
 
     @Test
-    @SuppressWarnings("deprecation")
     public void testRequestServlets() throws Exception {
-        ResourceResolver resolver = null;
-        try {
-            resolver = rrFactory.getAdministrativeResourceResolver(null);
+        try (ResourceResolver resolver = rrFactory.getServiceResourceResolver(null);) {
             FakeResponse response = new FakeResponse();
             slingRequestProcessor.processRequest(new FakeRequest(baseRequestComponentPath + ".model.json"), response, resolver);
             String stringOutput = response.getStringWriter().toString();
@@ -308,19 +273,12 @@ public class ExporterIT {
             Assert.assertEquals("UTF-8", response.getCharacterEncoding());
             Assert.assertEquals(interfaceRequestComponentPath, obj.getString("id"));
             Assert.assertEquals("interfaceTESTValue", obj.getString("sampleValue"));
-        } finally {
-            if (resolver != null && resolver.isLive()) {
-                resolver.close();
-            }
         }
     }
 
     @Test
-    @SuppressWarnings("deprecation")
     public void testDoubledServlets() throws Exception {
-        ResourceResolver resolver = null;
-        try {
-            resolver = rrFactory.getAdministrativeResourceResolver(null);
+        try (ResourceResolver resolver = rrFactory.getServiceResourceResolver(null);) {
             FakeResponse response = new FakeResponse();
             slingRequestProcessor.processRequest(new FakeRequest(doubledComponentPath + ".firstmodel.json"), response, resolver);
 
@@ -333,30 +291,19 @@ public class ExporterIT {
             obj = Json.createReader(new StringReader((response.getStringWriter().toString()))).readObject();
             Assert.assertEquals("application/json", response.getContentType());
             Assert.assertEquals("second", obj.getString("value"));
-        } finally {
-            if (resolver != null && resolver.isLive()) {
-                resolver.close();
-            }
         }
     }
 
     @Test
-    @SuppressWarnings("deprecation")
     public void testFailedExport() throws Exception {
         boolean thrown = false;
         try {
-            ResourceResolver resolver = null;
-            try {
-                resolver = rrFactory.getAdministrativeResourceResolver(null);
+            try (ResourceResolver resolver = rrFactory.getServiceResourceResolver(null);) {
                 final Resource baseComponentResource = resolver.getResource(baseComponentPath);
                 Assert.assertNotNull(baseComponentResource);
                 modelFactory.exportModelForResource(baseComponentResource, "jaxb", String.class,
                         Collections.<String, String>emptyMap());
                 Assert.fail("Should have thrown missing serializer error.");
-            } finally {
-                if (resolver != null && resolver.isLive()) {
-                    resolver.close();
-                }
             }
         } catch (MissingExporterException e) {
             thrown = true;

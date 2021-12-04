@@ -49,12 +49,10 @@ public class DelegateResourceIT {
     private final String extendedComponentPath = "/content/delegate/extendedComponent";
 
     @Before
-    @SuppressWarnings({"null", "deprecation"})
+    @SuppressWarnings("null")
     public void setup() throws LoginException, PersistenceException {
         rrFactory = teleporter.getService(ResourceResolverFactory.class);
-        ResourceResolver adminResolver = null;
-        try {
-            adminResolver = rrFactory.getAdministrativeResourceResolver(null);
+        try (ResourceResolver adminResolver = rrFactory.getServiceResourceResolver(null);) {
             Map<String, Object> properties = new HashMap<String, Object>();
             properties.put("text", "baseTESTValue");
             properties.put("other", "baseOther");
@@ -76,19 +74,12 @@ public class DelegateResourceIT {
             properties.clear();
 
             adminResolver.commit();
-        } finally {
-            if (adminResolver != null && adminResolver.isLive()) {
-                adminResolver.close();
-            }
         }
     }
 
     @Test
-    @SuppressWarnings("deprecation")
     public void testCreateDelegateModel() throws LoginException {
-        ResourceResolver resolver = null;
-        try {
-            resolver = rrFactory.getAdministrativeResourceResolver(null);
+        try (ResourceResolver resolver = rrFactory.getServiceResourceResolver(null);) {
             final Resource baseComponentResource = resolver.getResource(baseComponentPath);
             assertNotNull(baseComponentResource);
             final DelegateInterface modelFromBase = baseComponentResource.adaptTo(DelegateInterface.class);
@@ -104,10 +95,7 @@ public class DelegateResourceIT {
             assertTrue("Model should be DelegateExtendedModel", modelFromExtended instanceof DelegateExtendedModel);
             assertEquals("EXTENDEDTESTVALUE", modelFromExtended.getText());
             assertEquals("extendedOther", modelFromExtended.getOther());
-        } finally {
-            if (resolver != null && resolver.isLive()) {
-                resolver.close();
-            }
         }
     }
+
 }

@@ -52,14 +52,12 @@ public class ResourceTypeBindingIT {
     private final String fromRequestComponentPath = "/content/rt/fromRequest";
 
     @Before
-    @SuppressWarnings({ "null", "deprecation" })
+    @SuppressWarnings("null")
     public void setup() throws LoginException, PersistenceException {
         rrFactory = teleporter.getService(ResourceResolverFactory.class);
         modelFactory = teleporter.getService(ModelFactory.class);
 
-        ResourceResolver adminResolver = null;
-        try {
-            adminResolver = rrFactory.getAdministrativeResourceResolver(null);
+        try (ResourceResolver adminResolver = rrFactory.getServiceResourceResolver(null);) {
             Map<String, Object> properties = new HashMap<String, Object>();
             properties.put("sampleValue", "baseTESTValue");
             properties.put(SlingConstants.NAMESPACE_PREFIX + ":" + SlingConstants.PROPERTY_RESOURCE_TYPE,
@@ -97,19 +95,12 @@ public class ResourceTypeBindingIT {
             ResourceUtil.getOrCreateResource(adminResolver, fromRequestComponentPath, properties, null, false);
 
             adminResolver.commit();
-        } finally {
-            if (adminResolver != null && adminResolver.isLive()) {
-                adminResolver.close();
-            }
         }
     }
 
     @Test
-    @SuppressWarnings("deprecation")
     public void testClientModelCreateFromResource() throws LoginException {
-        ResourceResolver resolver = null;
-        try {
-            resolver = rrFactory.getAdministrativeResourceResolver(null);
+        try (ResourceResolver resolver = rrFactory.getServiceResourceResolver(null);) {
             final Resource baseComponentResource = resolver.getResource(baseComponentPath);
             Assert.assertNotNull(baseComponentResource);
             final Object baseModel = modelFactory.getModelFromResource(baseComponentResource);
@@ -134,29 +125,18 @@ public class ResourceTypeBindingIT {
             Assert.assertNotNull("Model should not be null", extendedModel);
             Assert.assertTrue("Model should be a BaseComponent", extendedModel instanceof BaseComponent);
             Assert.assertTrue("Model should be an ExtendedComponent", extendedModel instanceof ExtendedComponent);
-        } finally {
-            if (resolver != null && resolver.isLive()) {
-                resolver.close();
-            }
         }
     }
 
     @Test
-    @SuppressWarnings("deprecation")
     public void testClientModelCreateFromRequest() throws LoginException {
-        ResourceResolver resolver = null;
-        try {
-            resolver = rrFactory.getAdministrativeResourceResolver(null);
+        try (ResourceResolver resolver = rrFactory.getServiceResourceResolver(null);) {
             final Resource baseComponentResource = resolver.getResource(fromRequestComponentPath);
             Assert.assertNotNull(baseComponentResource);
             final Object baseModel = modelFactory.getModelFromRequest(new FakeRequest(baseComponentResource));
             Assert.assertNotNull("Model should not be null", baseModel);
             Assert.assertTrue("Model should be a FromRequestComponent", baseModel instanceof FromRequestComponent);
 
-        } finally {
-            if (resolver != null && resolver.isLive()) {
-                resolver.close();
-            }
         }
     }
 

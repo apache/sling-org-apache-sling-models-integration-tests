@@ -43,19 +43,12 @@ public class PathBoundServletIT {
     }
 
     @Test
-    @SuppressWarnings("deprecation")
     public void testDoubledServlets() throws Exception {
-        ResourceResolver resolver = null;
-        try {
-            resolver = rrFactory.getAdministrativeResourceResolver(null);
+        try (ResourceResolver resolver = rrFactory.getServiceResourceResolver(null);) {
             FakeResponse response = new FakeResponse();
             slingRequestProcessor.processRequest(new FakeRequest("/apps/rtpickerrequest"), response, resolver);
 
             Assert.assertEquals(200, response.getStatus());
-        } finally {
-            if (resolver != null && resolver.isLive()) {
-                resolver.close();
-            }
         }
     }
 

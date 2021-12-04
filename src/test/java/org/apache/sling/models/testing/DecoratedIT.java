@@ -47,11 +47,11 @@ public class DecoratedIT {
     private Resource resourceWithCustomAdaptToWrapper;
 
     @Before
-    @SuppressWarnings({ "null", "deprecation" })
+    @SuppressWarnings("null")
     public void setUp() throws Exception {
         ResourceResolverFactory rrFactory = teleporter.getService(ResourceResolverFactory.class);
         modelFactory = teleporter.getService(ModelFactory.class);
-        resolver = rrFactory.getAdministrativeResourceResolver(null);
+        resolver = rrFactory.getServiceResourceResolver(null);
         Session session = resolver.adaptTo(Session.class);
         Node rootNode = session.getRootNode();
         Node createdNode = rootNode.addNode("test_" + RandomStringUtils.randomAlphanumeric(10));
