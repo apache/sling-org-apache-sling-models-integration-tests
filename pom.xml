@@ -69,8 +69,6 @@
                 <artifactId>apache-rat-plugin</artifactId>
                 <configuration>
                     <excludes>
-                        <exclude>sling/**</exclude>
-                        <exclude>derby.log</exclude>
                         <exclude>src/main/resources/org/apache/sling/models/it/noclasses/foo.txt</exclude>
                     </excludes>
                 </configuration>
