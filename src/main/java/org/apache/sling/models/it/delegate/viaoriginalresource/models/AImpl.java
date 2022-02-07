@@ -21,7 +21,7 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.Via;
 import org.apache.sling.models.annotations.injectorspecific.Self;
-import org.apache.sling.models.annotations.via.OriginalResource;
+import org.apache.sling.models.annotations.via.OriginalResourceType;
 import org.apache.sling.models.it.delegate.viaoriginalresource.A;
 import org.apache.sling.models.it.delegate.viaoriginalresource.B;
 
@@ -33,7 +33,7 @@ import org.apache.sling.models.it.delegate.viaoriginalresource.B;
 public class AImpl implements A {
 
     @Self
-    @Via(type = OriginalResource.class)
+    @Via(type = OriginalResourceType.class)
     public B other;
 
 }
