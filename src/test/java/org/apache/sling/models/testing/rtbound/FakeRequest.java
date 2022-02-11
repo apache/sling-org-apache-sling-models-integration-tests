@@ -22,6 +22,7 @@ import java.io.UnsupportedEncodingException;
 import java.security.Principal;
 import java.util.Collection;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -54,6 +55,7 @@ import org.jetbrains.annotations.NotNull;
 public class FakeRequest implements SlingHttpServletRequest {
 
     private final Resource resource;
+    private final Map<String, Object> attributes = new HashMap<>();
 
     public FakeRequest(Resource r) {
         this.resource = r;
@@ -266,7 +268,7 @@ public class FakeRequest implements SlingHttpServletRequest {
 
     @Override
     public Object getAttribute(String s) {
-        return null;
+        return attributes.get(s);
     }
 
     @Override
@@ -356,7 +358,7 @@ public class FakeRequest implements SlingHttpServletRequest {
 
     @Override
     public void setAttribute(String s, Object o) {
-
+        attributes.put(s, o);
     }
 
     @Override
