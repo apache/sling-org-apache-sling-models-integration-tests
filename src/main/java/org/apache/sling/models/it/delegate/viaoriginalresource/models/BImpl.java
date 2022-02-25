@@ -24,7 +24,8 @@ import org.apache.sling.models.it.delegate.viaoriginalresource.B;
 @Model(
     adaptables = { SlingHttpServletRequest.class, Resource.class },
     adapters = { B.class },
-    resourceType = "delegate/nestedrtbound/generic"
+    resourceType = "delegate/nestedrtbound/generic",
+    cache = true
 )
 public class BImpl implements B {
 }

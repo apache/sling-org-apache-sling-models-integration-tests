@@ -28,7 +28,8 @@ import org.apache.sling.models.it.delegate.viaoriginalresource.B1;
 @Model(
     adaptables = { SlingHttpServletRequest.class, Resource.class },
     adapters = { B1.class, B.class },
-    resourceType = "delegate/nestedrtbound/specific"
+    resourceType = "delegate/nestedrtbound/specific",
+    cache = true
 )
 public class B1Impl implements B1 {
 

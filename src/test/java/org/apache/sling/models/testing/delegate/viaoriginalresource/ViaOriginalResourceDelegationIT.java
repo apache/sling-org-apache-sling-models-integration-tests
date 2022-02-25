@@ -104,6 +104,8 @@ public class ViaOriginalResourceDelegationIT {
             assertTrue(((A1Impl) model).other instanceof B1Impl);
             assertTrue(((A1Impl) model).delegate instanceof AImpl);
             assertTrue(((AImpl) ((A1Impl) model).delegate).other instanceof B1Impl);
+            // Since SLING-11133 and cache = true
+            assertSame(((A1Impl) model).other,((AImpl) ((A1Impl) model).delegate).other);
         }
     }
 
@@ -128,6 +130,8 @@ public class ViaOriginalResourceDelegationIT {
             assertTrue(((A1Impl) model).other instanceof B1Impl);
             assertTrue(((A1Impl) model).delegate instanceof AImpl);
             assertTrue(((AImpl) ((A1Impl) model).delegate).other instanceof B1Impl);
+            // Since SLING-11133 and cache = true
+            assertSame(((A1Impl) model).other,((AImpl) ((A1Impl) model).delegate).other);
         }
     }
 }
