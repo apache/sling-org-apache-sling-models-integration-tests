@@ -37,6 +37,7 @@ import org.apache.sling.models.it.models.implextend.InvalidImplementsInterfacePr
 import org.apache.sling.models.it.models.implextend.SampleServiceInterface;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -89,6 +90,7 @@ public class ModelFactorySimpleIT {
         assertSame("Adaptable is not injected", resource, model.getResource());
     }
 
+    @Ignore
     private static final class DummyClass {
     }
 
