@@ -252,13 +252,13 @@
         <dependency>
             <groupId>org.apache.sling</groupId>
             <artifactId>org.apache.sling.models.api</artifactId>
-            <version>1.4.3-SNAPSHOT</version>
+            <version>1.4.2</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.sling</groupId>
             <artifactId>org.apache.sling.models.impl</artifactId>
-            <version>1.5.3-SNAPSHOT</version>
+            <version>1.5.2</version>
             <scope>provided</scope>
         </dependency>
         <dependency>

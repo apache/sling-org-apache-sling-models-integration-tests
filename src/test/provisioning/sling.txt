@@ -24,12 +24,12 @@
     org.apache.sling/org.apache.sling.starter/11/slingstart
 
     # Use versions as defined in POM
-#    org.apache.sling/org.apache.sling.models.api
-#    org.apache.sling/org.apache.sling.models.impl
+    org.apache.sling/org.apache.sling.models.api
+    org.apache.sling/org.apache.sling.models.impl
 
     # Additional test bundles
     org.apache.sling/org.apache.sling.junit.core
-#    org.apache.sling/org.apache.sling.models.integration-tests
+    org.apache.sling/org.apache.sling.models.integration-tests
 
 [configurations]
     # configure service user mapping for junit core (being used in the IT itself)
