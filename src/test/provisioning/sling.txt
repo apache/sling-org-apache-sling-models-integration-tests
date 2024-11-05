@@ -23,6 +23,13 @@
 [artifacts]
     org.apache.sling/org.apache.sling.starter/11/slingstart
 
+    # Update to newer bundles required by sling models impl
+    org.osgi/org.osgi.util.converter/1.0.9
+    org.apache.sling/org.apache.sling.api/2.21.0
+    org.apache.sling/org.apache.sling.resourceresolver/1.6.16
+    org.apache.sling/org.apache.sling.servlets.resolver/2.5.8
+    org.apache.sling/org.apache.sling.scripting.core/2.1.0
+
     # Use versions as defined in POM
     org.apache.sling/org.apache.sling.models.api
     org.apache.sling/org.apache.sling.models.impl
