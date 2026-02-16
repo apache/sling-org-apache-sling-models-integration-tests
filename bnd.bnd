@@ -1,7 +1,0 @@
-Sling-Test-Regexp: .*Test
-
-Import-Package:\
-  org.apache.commons.beanutils;resolution:=optional,\
-  *
-
--plugin: org.apache.sling.bnd.models.ModelsScannerPlugin
